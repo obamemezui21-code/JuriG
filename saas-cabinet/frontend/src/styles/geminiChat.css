@@ -1,0 +1,665 @@
+/**
+ * Gemini AI Chat Styles
+ * Using sidebar theme colors for consistency
+ */
+
+:root {
+  --gemini-brand: #17345f;
+  --gemini-brand-strong: #0d1f3f;
+  --gemini-sidebar-start: #0c1525;
+  --gemini-sidebar-mid: #16243d;
+  --gemini-sidebar-end: #22375d;
+  --gemini-text: #f0f4f8;
+  --gemini-text-secondary: #cbd5e1;
+  --gemini-accent: #42b883;
+  --gemini-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.gemini-chat {
+  position: fixed;
+  z-index: 999;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Position variants */
+.gemini-chat--bottom-right {
+  bottom: 2rem;
+  right: 2rem;
+}
+
+.gemini-chat--bottom-left {
+  bottom: 2rem;
+  left: 2rem;
+}
+
+.gemini-chat--top-right {
+  top: 2rem;
+  right: 2rem;
+}
+
+.gemini-chat--top-left {
+  top: 2rem;
+  left: 2rem;
+}
+
+/* ========================
+   TOGGLE BUTTON
+   ======================== */
+
+.gemini-chat-button__btn {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: none;
+  background: linear-gradient(135deg, var(--gemini-brand), var(--gemini-sidebar-end));
+  color: white;
+  font-size: 1.6em;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 12px 32px rgba(23, 52, 95, 0.3);
+  transition: all 250ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  padding: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.gemini-chat-button__btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.1), transparent 50%);
+  pointer-events: none;
+}
+
+.gemini-chat-button__btn:hover:not(:disabled) {
+  transform: scale(1.12) translateY(-4px);
+  box-shadow: 0 16px 48px rgba(23, 52, 95, 0.4);
+}
+
+.gemini-chat-button__btn:active:not(:disabled) {
+  transform: scale(0.95);
+}
+
+.gemini-chat-button__btn--disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background: linear-gradient(135deg, #64748b, #475569);
+  box-shadow: none;
+}
+
+.gemini-chat-button__btn:focus-visible {
+  outline: 2px solid var(--gemini-accent-1);
+  outline-offset: 2px;
+}
+
+/* ========================
+   CHAT WINDOW
+   ======================== */
+
+.gemini-chat__window {
+  position: absolute;
+  bottom: 85px;
+  right: 0;
+  width: 420px;
+  height: 650px;
+  background: linear-gradient(180deg, rgba(22, 36, 61, 0.9), rgba(12, 21, 37, 0.85));
+  border-radius: 18px;
+  box-shadow: var(--gemini-shadow);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid rgba(66, 184, 131, 0.15);
+  animation: slideIn 300ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  backdrop-filter: blur(20px);
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.gemini-chat--bottom-left .gemini-chat__window {
+  right: auto;
+  left: 0;
+}
+
+.gemini-chat--top-right .gemini-chat__window {
+  bottom: auto;
+  top: 85px;
+}
+
+.gemini-chat--top-left .gemini-chat__window {
+  bottom: auto;
+  top: 85px;
+  right: auto;
+  left: 0;
+}
+
+/* ========================
+   HEADER
+   ======================== */
+
+.gemini-chat__header {
+  background: linear-gradient(180deg, rgba(23, 52, 95, 0.2), rgba(22, 36, 61, 0.15));
+  border-bottom: 1px solid rgba(66, 184, 131, 0.15);
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.gemini-chat__header-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+}
+
+.gemini-chat__title-icon {
+  font-size: 24px;
+  line-height: 1;
+}
+
+.gemini-chat__title {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--gemini-text);
+  letter-spacing: -0.5px;
+}
+
+.gemini-chat__subtitle {
+  margin: 2px 0 0 0;
+  font-size: 11px;
+  color: var(--gemini-text-secondary);
+  font-weight: 500;
+}
+
+.gemini-chat__header-actions {
+  display: flex;
+  gap: 6px;
+}
+
+.gemini-chat__action-btn,
+.gemini-chat__close-btn {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  color: var(--gemini-text-secondary);
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 150ms;
+  font-size: 1em;
+  font-weight: 600;
+}
+
+.gemini-chat__action-btn:hover,
+.gemini-chat__close-btn:hover {
+  background: rgba(59, 130, 246, 0.15);
+  border-color: rgba(59, 130, 246, 0.3);
+  color: var(--gemini-text);
+  transform: scale(1.05);
+}
+
+.gemini-chat__action-btn:active,
+.gemini-chat__close-btn:active {
+  transform: scale(0.95);
+}
+
+/* ========================
+   MESSAGES
+   ======================== */
+
+.gemini-chat__messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: rgba(2, 6, 23, 0.35);
+}
+
+.gemini-chat__welcome-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 32px 16px;
+  color: var(--gemini-text-secondary);
+  text-align: center;
+}
+
+.gemini-chat__welcome-icon {
+  font-size: 48px;
+  line-height: 1;
+  opacity: 0.6;
+}
+
+.gemini-chat__message {
+  display: flex;
+  justify-content: flex-start;
+  animation: messageSlideIn 300ms ease-out;
+}
+
+@keyframes messageSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.gemini-chat__message--user {
+  justify-content: flex-end;
+}
+
+.gemini-chat__message-bubble {
+  max-width: 85%;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.gemini-chat__message-content {
+  padding: 12px 14px;
+  border-radius: 14px;
+  word-wrap: break-word;
+  line-height: 1.6;
+  font-size: 14px;
+  border: 1px solid transparent;
+}
+
+.gemini-chat__message--user .gemini-chat__message-content {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.22), rgba(139, 92, 246, 0.12));
+  border-color: rgba(59, 130, 246, 0.35);
+  box-shadow: 0 8px 24px rgba(59, 130, 246, 0.1);
+  color: var(--gemini-text);
+}
+
+.gemini-chat__message--bot .gemini-chat__message-content {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.12), rgba(16, 185, 129, 0.05));
+  border-color: rgba(16, 185, 129, 0.3);
+  box-shadow: 0 8px 24px rgba(16, 185, 129, 0.08);
+  color: var(--gemini-text);
+}
+
+.gemini-chat__message--error .gemini-chat__message-content {
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.12), rgba(239, 68, 68, 0.05));
+  border-color: rgba(239, 68, 68, 0.3);
+  color: #fca5a5;
+}
+
+.gemini-chat__message-footer {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 4px;
+  font-size: 11px;
+  color: var(--gemini-text-secondary);
+  opacity: 0.7;
+}
+
+.gemini-chat__message--user .gemini-chat__message-footer {
+  flex-direction: row-reverse;
+}
+
+.gemini-chat__message-time {
+  font-size: 11px;
+}
+
+.gemini-chat__status-icon {
+  font-size: 12px;
+}
+
+.gemini-chat__copy-btn {
+  background: none;
+  border: none;
+  color: var(--gemini-accent-1);
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 2px 6px;
+  border-radius: 6px;
+  transition: all 150ms;
+  opacity: 0.8;
+}
+
+.gemini-chat__copy-btn:hover {
+  background: rgba(59, 130, 246, 0.15);
+  opacity: 1;
+}
+
+/* Loading animation */
+.gemini-chat__loading-dots {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 0;
+}
+
+.gemini-chat__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--gemini-accent-2);
+  animation: pulse-dot 1.4s infinite;
+}
+
+.gemini-chat__dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.gemini-chat__dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes pulse-dot {
+  0%, 60%, 100% {
+    opacity: 0.3;
+  }
+  30% {
+    opacity: 1;
+  }
+}
+
+/* Scrollbar styling */
+.gemini-chat__messages::-webkit-scrollbar {
+  width: 8px;
+}
+
+.gemini-chat__messages::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.gemini-chat__messages::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.3);
+  border-radius: 6px;
+  transition: background 0.2s ease;
+}
+
+.gemini-chat__messages::-webkit-scrollbar-thumb:hover {
+  background: rgba(148, 163, 184, 0.5);
+}
+
+/* ========================
+   INPUT AREA
+   ======================== */
+
+.gemini-chat__input-area {
+  display: flex;
+  gap: 8px;
+  padding: 12px;
+  border-top: 1px solid var(--gemini-border);
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.5), rgba(12, 19, 35, 0.45));
+  backdrop-filter: blur(10px);
+}
+
+.gemini-chat__input {
+  flex: 1;
+  border: 1px solid var(--gemini-border);
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-family: inherit;
+  font-size: 14px;
+  resize: none;
+  max-height: 100px;
+  background: rgba(2, 6, 23, 0.6);
+  color: var(--gemini-text);
+  outline: none;
+  transition: all 200ms;
+}
+
+.gemini-chat__input:focus {
+  border-color: rgba(59, 130, 246, 0.6);
+  background: rgba(2, 6, 23, 0.75);
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.12);
+}
+
+.gemini-chat__input:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.gemini-chat__input::placeholder {
+  color: var(--gemini-text-secondary);
+  opacity: 0.6;
+}
+
+.gemini-chat__send-btn {
+  background: linear-gradient(135deg, var(--gemini-accent-1), var(--gemini-accent-2));
+  border: none;
+  border-radius: 10px;
+  color: white;
+  width: 40px;
+  min-width: 40px;
+  height: 40px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 150ms;
+  font-size: 1.1em;
+  font-weight: bold;
+}
+
+.gemini-chat__send-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(59, 130, 246, 0.2);
+}
+
+.gemini-chat__send-btn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.gemini-chat__send-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ========================
+   RESPONSIVE
+   ======================== */
+
+@media (max-width: 600px) {
+  .gemini-chat--bottom-right,
+  .gemini-chat--bottom-left,
+  .gemini-chat--top-right,
+  .gemini-chat--top-left {
+    bottom: 1rem;
+    right: 1rem;
+    top: auto;
+    left: auto;
+  }
+
+  .gemini-chat__window {
+    width: calc(100vw - 2rem);
+    max-width: 400px;
+    height: 70vh;
+    max-height: 600px;
+  }
+
+  .gemini-chat-button__btn {
+    width: 56px;
+    height: 56px;
+    font-size: 1.4em;
+  }
+
+  .gemini-chat__message-bubble {
+    max-width: 90%;
+  }
+
+  .gemini-chat__message-content {
+    font-size: 13px;
+  }
+
+  .gemini-chat__input {
+    font-size: 16px;
+  }
+}
+
+/* ========================
+   FOOTER
+   ======================== */
+
+.gemini-chat__footer {
+  padding: 10px 12px;
+  border-top: 2px solid #d4af37;
+  background: linear-gradient(135deg, #c41e3a 0%, #8b0000 100%);
+  text-align: center;
+  font-size: 0.75rem;
+  color: #d4af37;
+  font-weight: 600;
+}
+
+/* ========================
+   DARK MODE
+   ======================== */
+
+.gemini-chat.dark .gemini-chat__window {
+  background: var(--bg);
+  border-color: var(--line);
+}
+
+.gemini-chat.dark .gemini-chat__input {
+  background: var(--panel);
+  color: var(--ink);
+  border-color: var(--line);
+}
+
+.gemini-chat.dark .gemini-chat__input:focus {
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1);
+}
+
+.gemini-chat.dark .gemini-chat__message-content {
+  background: linear-gradient(135deg, #3a3a3a 0%, #2c2c2c 100%);
+  color: #f5deb3;
+  border-left: 4px solid #d4af37;
+}
+
+.gemini-chat.dark .gemini-chat__message-content {
+  background: linear-gradient(135deg, #2d333b 0%, #22272e 100%);
+  color: #f0f4f8;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+/* ========================
+   RESPONSIVE
+   ======================== */
+
+@media (max-width: 600px) {
+  .gemini-chat--bottom-right,
+  .gemini-chat--bottom-left,
+  .gemini-chat--top-right,
+  .gemini-chat--top-left {
+    bottom: 1rem;
+    right: 1rem;
+    top: auto;
+    left: auto;
+  }
+
+  .gemini-chat__window {
+    width: calc(100vw - 2rem);
+    height: calc(100vh - 120px);
+    max-width: 380px;
+    bottom: 80px;
+  }
+
+  .gemini-chat-button__btn {
+    width: 50px;
+    height: 50px;
+  }
+
+  .gemini-chat__message-content {
+    max-width: 85%;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .gemini-chat__window {
+    width: calc(100vw - 1rem);
+    height: calc(100vh - 100px);
+  }
+
+  .gemini-chat-button__btn {
+    width: 48px;
+    height: 48px;
+  }
+
+  .gemini-chat__header {
+    padding: 12px;
+  }
+
+  .gemini-chat__messages {
+    padding: 12px;
+    gap: 10px;
+  }
+
+  .gemini-chat__input-area {
+    padding: 10px;
+    gap: 6px;
+  }
+}
+
+/* ========================
+   ACCESSIBILITY
+   ======================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .gemini-chat__window,
+  .gemini-chat__message,
+  .gemini-chat-button__btn,
+  .gemini-chat__action-btn,
+  .gemini-chat__close-btn,
+  .gemini-chat__send-btn {
+    animation: none;
+    transition: none;
+  }
+
+  .gemini-chat__loading span {
+    animation: none;
+    opacity: 0.6;
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: more) {
+  .gemini-chat-button__btn {
+    border: 2px solid currentColor;
+  }
+
+  .gemini-chat__header {
+    border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+  }
+
+  .gemini-chat__input-area {
+    border-top: 2px solid var(--line);
+  }
+
+  .gemini-chat__footer {
+    border-top: 2px solid var(--line);
+  }
+}

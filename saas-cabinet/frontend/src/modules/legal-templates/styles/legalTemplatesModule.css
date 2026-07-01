@@ -1,0 +1,204 @@
+/**
+ * Legal Templates Module Styles
+ */
+
+.legal-templates-module {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  padding: 32px 0;
+  min-height: 100vh;
+  background: linear-gradient(180deg, rgba(12, 21, 37, 0.5), rgba(22, 36, 61, 0.3));
+}
+
+/* Header */
+.legal-templates-module__header {
+  padding: 40px 32px;
+  border-bottom: 1px solid rgba(66, 184, 131, 0.1);
+  background: linear-gradient(180deg, rgba(23, 52, 95, 0.1), rgba(22, 36, 61, 0.05));
+}
+
+.legal-templates-module__title-section {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.legal-templates-module__title {
+  margin: 0 0 8px 0;
+  font-size: 36px;
+  font-weight: 700;
+  letter-spacing: -1px;
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.legal-templates-module__description {
+  margin: 0;
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.6);
+  max-width: 600px;
+}
+
+/* View Selector */
+.legal-templates-module__view-selector {
+  display: flex;
+  gap: 12px;
+  padding: 0 32px;
+  max-width: 1400px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+}
+
+.legal-templates-module__view-btn {
+  padding: 12px 24px;
+  background: rgba(22, 36, 61, 0.3);
+  border: 1px solid rgba(66, 184, 131, 0.15);
+  border-radius: 8px;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 200ms;
+}
+
+.legal-templates-module__view-btn:hover {
+  border-color: rgba(66, 184, 131, 0.3);
+  color: rgba(255, 255, 255, 0.9);
+  background: rgba(22, 36, 61, 0.5);
+}
+
+.legal-templates-module__view-btn.active {
+  background: linear-gradient(135deg, rgba(66, 184, 131, 0.2), rgba(66, 184, 131, 0.1));
+  border-color: rgba(66, 184, 131, 0.4);
+  color: #42b883;
+  font-weight: 600;
+}
+
+/* Content */
+.legal-templates-module__content {
+  flex: 1;
+  padding: 0 32px;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* Info Section */
+.legal-templates-module__info {
+  padding: 40px 32px;
+  border-top: 1px solid rgba(66, 184, 131, 0.1);
+  background: linear-gradient(180deg, rgba(12, 21, 37, 0.3), rgba(22, 36, 61, 0.1));
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.legal-templates-module__info-card {
+  display: flex;
+  gap: 16px;
+  padding: 20px;
+  background: rgba(22, 36, 61, 0.2);
+  border: 1px solid rgba(66, 184, 131, 0.1);
+  border-radius: 12px;
+  transition: all 300ms;
+}
+
+.legal-templates-module__info-card:hover {
+  border-color: rgba(66, 184, 131, 0.2);
+  background: rgba(22, 36, 61, 0.35);
+  transform: translateY(-2px);
+}
+
+.legal-templates-module__info-card h3 {
+  margin: 0 0 4px 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.legal-templates-module__info-card p {
+  margin: 0;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.5;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .legal-templates-module {
+    gap: 24px;
+    padding: 24px 0;
+  }
+
+  .legal-templates-module__header {
+    padding: 24px 16px;
+  }
+
+  .legal-templates-module__title-section {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .legal-templates-module__title {
+    font-size: 28px;
+  }
+
+  .legal-templates-module__view-selector {
+    padding: 0 16px;
+  }
+
+  .legal-templates-module__content {
+    padding: 0 16px;
+  }
+
+  .legal-templates-module__info {
+    padding: 24px 16px;
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .legal-templates-module {
+    gap: 16px;
+    padding: 16px 0;
+  }
+
+  .legal-templates-module__header {
+    padding: 16px;
+  }
+
+  .legal-templates-module__title {
+    font-size: 22px;
+  }
+
+  .legal-templates-module__description {
+    font-size: 14px;
+  }
+
+  .legal-templates-module__view-selector {
+    padding: 0 16px;
+    gap: 8px;
+  }
+
+  .legal-templates-module__view-btn {
+    padding: 10px 16px;
+    font-size: 13px;
+  }
+
+  .legal-templates-module__content {
+    padding: 0 16px;
+  }
+
+  .legal-templates-module__info {
+    padding: 16px;
+  }
+}
